@@ -17,7 +17,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import android.view.View;
 import android.os.Handler;
-
+import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     int mPosition = 0;
     ArrayList<Uri> imageUris = new ArrayList<Uri>();
+    ImageView imageView;
 
     boolean mIsSlideshow = false;
 
@@ -38,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
                     public void run () {
                         movePosition(1);
                     }
-
                 });
             }
         }
@@ -69,9 +69,16 @@ public class MainActivity extends AppCompatActivity {
             getContentsInfo();
         }
 
-        ImageView imageView = (ImageView) findViewById(R.id.imageView);
-        Uri num = imageUris.get(mPosition);
-        imageView.setImageURI(num);
+        imageView = (ImageView) findViewById(R.id.imageView);
+        TextView textView = (TextView) findViewById(R.id.textView);
+        textView.setText("");
+
+        if (imageUris.size() > 0) {
+            Uri uri = imageUris.get(mPosition);
+            imageView.setImageURI(uri);
+        } else {
+            textView.setText("画像が保存されていません。");
+        }
 
         mTimer.schedule(mTimerTask, 0, 2000);
     }
@@ -127,7 +134,8 @@ public class MainActivity extends AppCompatActivity {
         } else if (mPosition < 0) {
             mPosition = imageUris.size() - 1;
         }
-
+        Uri uri = imageUris.get(mPosition);
+        imageView.setImageURI(uri);
     }
 
     public void onbutton1Tapped(View view) {
@@ -138,7 +146,8 @@ public class MainActivity extends AppCompatActivity {
         movePosition(1);
     }
 
-    public void onButton2Tapped(View view) {
+    public void onbutton2Tapped(View view) {
         mIsSlideshow = !mIsSlideshow;
     }
+
 }
