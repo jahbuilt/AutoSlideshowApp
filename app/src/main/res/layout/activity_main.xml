@@ -19,7 +19,7 @@
         android:id="@+id/button1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:onClick="onbutton1Tapped (MainActivity)" />
+        android:onClick="onbutton1Tapped" />
 
     <Button
         android:text="再生"
@@ -28,7 +28,8 @@
         android:id="@+id/button2"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/button3"
-        android:layout_toRightOf="@+id/button1" />
+        android:layout_toRightOf="@+id/button1"
+        android:onClick="onbutton2Tapped" />
 
     <Button
         android:text="進む"
@@ -37,6 +38,14 @@
         android:id="@+id/button3"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:onClick="onbutton3Tapped (MainActivity)" />
+        android:onClick="onbutton3Tapped" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView" />
 
 </RelativeLayout>
