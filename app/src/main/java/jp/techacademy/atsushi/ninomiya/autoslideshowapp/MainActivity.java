@@ -3,15 +3,20 @@ package jp.techacademy.atsushi.ninomiya.autoslideshowapp;
 import android.Manifest;
 import android.content.ContentResolver;
 import android.content.ContentUris;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import java.util.ArrayList;
+
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -29,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView imageView;
 
     boolean mIsSlideshow = false;
+    private Button playStopButton;
 
     public class MainTimerTask extends TimerTask {
         @Override
@@ -42,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         }
-
     }
 
     Timer mTimer = new Timer();
@@ -70,17 +75,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         imageView = (ImageView) findViewById(R.id.imageView);
-        TextView textView = (TextView) findViewById(R.id.textView);
-        textView.setText("");
-
-        if (imageUris.size() > 0) {
-            Uri uri = imageUris.get(mPosition);
-            imageView.setImageURI(uri);
-        } else {
-            textView.setText("画像が保存されていません。");
-        }
+        Uri uri = imageUris.get(mPosition);
+        imageView.setImageURI(uri);
 
         mTimer.schedule(mTimerTask, 0, 2000);
+
+        playStopButton = (Button) findViewById(R.id.button2);
+
     }
 
     @Override
@@ -108,6 +109,19 @@ public class MainActivity extends AppCompatActivity {
                 null // ソート (null ソートなし)
         );
 
+        if (cursor.getCount(); <= 0) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("エラー");
+            builder.setMessage("画像が一枚もありません");
+            builder.setPositiveButton("閉じる", new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
 
         if (cursor.moveToFirst()) {
             do {
@@ -147,7 +161,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onbutton2Tapped(View view) {
-        mIsSlideshow = !mIsSlideshow;
+            mIsSlideshow = !mIsSlideshow;
+            if (mIsSlideshow = false) {
+                playStopButton.setText("再生");
+            } else {
+                playStopButton.setText("停止");
+            }
     }
 
 }
