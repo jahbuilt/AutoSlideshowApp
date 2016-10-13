@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 null // ソート (null ソートなし)
         );
 
-        if (cursor.getCount(); <= 0) {
+        if (cursor.getCount() <= 0) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("エラー");
             builder.setMessage("画像が一枚もありません");
