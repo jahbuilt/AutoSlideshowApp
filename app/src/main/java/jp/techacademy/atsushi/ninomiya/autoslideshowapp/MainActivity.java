@@ -75,8 +75,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         imageView = (ImageView) findViewById(R.id.imageView);
-        Uri uri = imageUris.get(mPosition);
-        imageView.setImageURI(uri);
+        if (imageUris.size() > 0) {
+            Uri uri = imageUris.get(mPosition);
+            imageView.setImageURI(uri);
+        }
 
         mTimer.schedule(mTimerTask, 0, 2000);
 
@@ -161,12 +163,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onbutton2Tapped(View view) {
-            mIsSlideshow = !mIsSlideshow;
-            if (mIsSlideshow = false) {
-                playStopButton.setText("再生");
-            } else {
-                playStopButton.setText("停止");
-            }
+        mIsSlideshow = !mIsSlideshow;
+        if (mIsSlideshow) {
+            playStopButton.setText("停止");
+        } else if (!mIsSlideshow) {
+            playStopButton.setText("再生");
+        }
     }
 
 }

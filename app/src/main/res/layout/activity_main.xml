@@ -40,12 +40,5 @@
         android:layout_alignParentBottom="true"
         android:onClick="onbutton3Tapped" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/textView" />
 
 </RelativeLayout>
