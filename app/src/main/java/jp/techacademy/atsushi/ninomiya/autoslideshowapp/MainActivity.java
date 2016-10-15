@@ -113,9 +113,9 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("エラー");
             builder.setMessage("画像が一枚もありません");
-            builder.setPositiveButton("閉じる", new OnClickListener() {
+            builder.setPositiveButton("閉じる", new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(DialogInterface dialog, int whichButton) {
                     finish();
                 }
             });
