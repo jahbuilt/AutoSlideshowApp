@@ -15,7 +15,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import java.util.ArrayList;
 
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import java.util.Timer;
